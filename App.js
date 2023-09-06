@@ -2,14 +2,14 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import Start from "./compoments/Start";
 import { ChakraProvider } from '@chakra-ui/react'
+import ButtonSample from "./compoments/ButtonSample";
 
 export default function App() {
   return (
     <View style={styles.container}>
       <ChakraProvider>
-          <Start></Start>
+          <ButtonSample text='📆'></ButtonSample>
       </ChakraProvider>
-      <Text>test!</Text>
       <StatusBar style="auto" />
     </View>
   );
