@@ -1,6 +1,6 @@
 import React from "react";
 import { Textarea } from '@chakra-ui/react'
-import { Button, ButtonGroup } fr   om '@chakra-ui/react'
+import { Button, ButtonGroup } from '@chakra-ui/react'
 
 export default function Buttons(props) {
     return (
