@@ -3,22 +3,18 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StyleSheet, View } from 'react-native';
 import Buttons from "./compoments/Buttons";
+import CardExample from "./compoments/CardExample";
 import ButtonSample from "./compoments/ButtonSample";
 import Events from "./compoments/Events";
 import Calendar from "./compoments/Calendar";
-import {ChakraBaseProvider} from "@chakra-ui/react";
+import { ChakraBaseProvider} from "@chakra-ui/react";
 const Stack = createStackNavigator();
 import { Grid } from '@chakra-ui/react';
 import CalendarView from "./compoments/CalendarView";
-//import firebase from '@react-native-firebase/app';
-//import database from '@react-native-firebase/database';
-//import {firebaseConfig} from "./compoments/firebaseconfig";
-/*
+import CalendarFirebase from "./compoments/CalendarFirebase";
+import calendarFirebase from "./compoments/CalendarFirebase";
 
-if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
-}
- */
+import {Button} from "@chakra-ui/button";
 
 function HomeScreen({ navigation }) {
     return (
@@ -26,9 +22,10 @@ function HomeScreen({ navigation }) {
             <Grid templateColumns="repeat(3, 1fr)" templateRows="repeat(3, 1fr)" gap={6}>
             <ButtonSample text='📆'></ButtonSample>
             <ButtonSample text="☎️" onClick={() => navigation.navigate('Events')} />
-            <ButtonSample text="☎Dings" onClick={() => navigation.navigate('Calendar')} />
+            <ButtonSample text="Dings" onClick={() => navigation.navigate('Calendar')} />
             <ButtonSample text='📆'></ButtonSample>
-            <ButtonSample text="☎️" onClick={() => window.location.href='./compoments/Events.js'} />
+            <ButtonSample text="☎️sache" onClick={() => window.location.href='./compoments/CalendarFirebase.js'} />
+                <ButtonSample text="Dings" onClick={() => navigation.navigate('CalendarFirebase')} />
             <ButtonSample text='🎭'></ButtonSample>
             <ButtonSample text='Test'></ButtonSample>
             <ButtonSample text='King'></ButtonSample>
@@ -45,7 +42,7 @@ export default function App() {
         <NavigationContainer>
             <Stack.Navigator initialRouteName="Home">
                 <Stack.Screen name="Home" component={HomeScreen} />
-                <Stack.Screen name="Events" component={Events} />
+                <Stack.Screen name="CalendarFirebase" component={calendarFirebase} />
                 <Stack.Screen name="Calendar" component={CalendarView} />
             </Stack.Navigator>
         </NavigationContainer>
