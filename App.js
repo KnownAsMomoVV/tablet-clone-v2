@@ -9,7 +9,7 @@ import Events from "./compoments/Events";
 import Calendar from "./compoments/Calendar";
 import { ChakraBaseProvider} from "@chakra-ui/react";
 const Stack = createStackNavigator();
-import { Grid } from '@chakra-ui/react';
+import { Grid, Box } from '@chakra-ui/react';
 import CalendarView from "./compoments/CalendarView";
 import CalendarFirebase from "./compoments/CalendarFirebase";
 import calendarFirebase from "./compoments/CalendarFirebase";

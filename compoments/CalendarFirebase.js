@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import '/assets/calendar.css';
-import { Grid } from '@chakra-ui/react';
+import { Grid, Box } from '@chakra-ui/react';
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, onValue, off } from "firebase/database";
 import { firebaseConfig } from "./firebaseconfig";
@@ -14,12 +14,10 @@ import { Card, CardHeader, CardBody, CardFooter, Text } from '@chakra-ui/react'
 
 const firebaseApp = initializeApp(firebaseConfig);
 const db = getDatabase();
-
 const months = [
     "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
 ];
-
 function Calendar() {
     const [visibleMonth, setVisibleMonth] = useState(null);
     const [cards, setCards] = useState([]);
@@ -63,9 +61,9 @@ function Calendar() {
     }, [visibleMonth]);
 
     return (
-        <div className="calendar">
-            <h1>Calendar</h1>
-            <div className="months-grid">
+        <Box className="calendar" p={5}>
+            <Text fontSize="2xl" mb={5}>Calendar</Text>
+            <Grid templateColumns="repeat(3, 1fr)" gap={5}>
                 {months.map((month, index) => (
                     <Month
                         key={index}
@@ -76,28 +74,38 @@ function Calendar() {
                         }}
                     />
                 ))}
-            </div>
-            <div className="cards">
-                {cards.map((card, index) => (
-                    <div key={index} className="card">
-                        <ChakraBaseProvider>
-                            <Grid templateColumns="repeat(3, 1fr)" templateRows="repeat(3, 1fr)" gap={6}>
-                                <CardExample text={card.description} heading={card.name} date={card.date} ></CardExample>
-                                {/* ... [other CardExample components, if needed] */}
-                            </Grid>
-                        </ChakraBaseProvider>
-                    </div>
-                ))}
-            </div>
-        </div>
+            </Grid>
+            <Box mt={5}>
+                <Grid templateColumns="repeat(3, 1fr)" gap={5}>
+                    {cards.map((card, index) => (
+                        <CardExample
+                            key={index}
+                            text={card.description}
+                            heading={card.name}
+                            date={card.date}
+                            ImageURL={card.pictureURL}
+                        />
+                    ))}
+                </Grid>
+            </Box>
+        </Box>
     );
 }
 
 function Month({ name, isSelected, onSelect }) {
     return (
-        <div className={`month-box ${isSelected ? 'selected' : ''}`} onClick={onSelect}>
+        <Box
+            p={4}
+            bg={isSelected ? 'blue.500' : 'gray.200'}
+            borderRadius="md"
+            textAlign="center"
+            cursor="pointer"
+            color={isSelected ? 'white' : 'black'}
+            _hover={{ bg: isSelected ? 'blue.600' : 'gray.300' }}
+            onClick={onSelect}
+        >
             {name}
-        </div>
+        </Box>
     );
 }
 
