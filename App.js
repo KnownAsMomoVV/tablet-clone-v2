@@ -36,10 +36,18 @@ export default function App() {
         const url = "https://ping.checklyhq.com/f1ece931-1be8-44bf-b861-bb4e203a336d";
 
         // A GET request to the Heartbeat
-        fetch(url)
-            .then(response => response.json())
-            .then(data => console.log(data))
-            .catch(error => console.error("Error pinging Heartbeat:", error));
+        fetch(url, {
+            method: 'GET',
+            mode: 'no-cors',
+        })
+            .then(() => {
+                // Log confirmation every time the Heartbeat URL is pinged.
+                console.log('Heartbeat pinged successfully');
+            })
+            .catch(error => {
+                // Log any errors if they occur.
+                console.error("Error pinging Heartbeat:", error);
+            });
     }, []);
     return (
         <ChakraBaseProvider>
