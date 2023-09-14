@@ -13,7 +13,8 @@ const months = [
     "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
 ];
-function Calendar() {
+function Calendar(props) {
+    const [selectedCardIndex, setSelectedCardIndex] = useState(null);
     const [visibleMonth, setVisibleMonth] = useState(null);
     const [cards, setCards] = useState([]);
 
@@ -54,6 +55,8 @@ function Calendar() {
             }
         };
     }, [visibleMonth]);
+    console.log("Selected Card Index in Calendar:", selectedCardIndex);
+
 
     return (
         <Box className="calendar" p={5}>
@@ -72,17 +75,29 @@ function Calendar() {
             </Grid>
             <Box mt={5}>
                 <Grid templateColumns="repeat(3, 1fr)" gap={5}>
-                    {cards.map((card, index) => (
-                        <CardExample
-                            key={index}
-                            text={card.description}
-                            heading={card.name}
-                            date={card.date}
-                            ImageURL={card.pictureURL}
-                        />
-                    ))}
+                    {cards.map((card, index) => {
+                        const isThisCardSelected = selectedCardIndex === index;
+                        console.log("Rendering Card:", index, "Is Selected:", isThisCardSelected);
+                        return (
+                            <CardExample
+                                key={index}
+                                index={index}
+                                text={card.description}
+                                heading={card.name}
+                                date={card.date}
+                                ImageURL={card.pictureURL}
+                                isSelected={isThisCardSelected}
+                                onSelect={() => {
+                                    const newIndex = index === selectedCardIndex ? null : index;
+                                    setSelectedCardIndex(newIndex);
+                                }}
+                                navigation={props.navigation} // Pass down the navigation prop
+                            />
+                        );
+                    })}
                 </Grid>
             </Box>
+
         </Box>
     );
 }

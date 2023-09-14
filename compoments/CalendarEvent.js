@@ -9,7 +9,7 @@ export default function CalendarEvent({ data }) { // Receive the card data as a 
             {/* Display the detailed view of the card using the data prop */}
             <Text>{data.heading}</Text>
             <Text>Dings</Text>
-            <Image src={data.ImageURL} alt='Caffe Latte' />
+            <Image src={data.ImageURL}/>
             <Text>{data.text}</Text>
             <Text>{data.date}</Text>
         </View>
