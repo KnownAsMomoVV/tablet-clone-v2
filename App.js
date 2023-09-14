@@ -15,16 +15,14 @@ function HomeScreen({ navigation }) {
     return (
         <View style={styles.container}>
             <Grid templateColumns="repeat(3, 1fr)" templateRows="repeat(3, 1fr)" gap={6}>
-            <ButtonSample text='📆'></ButtonSample>
+            <ButtonSample text='Dongs'></ButtonSample>
             <ButtonSample text="☎️" onClick={() => navigation.navigate('Events')} />
             <ButtonSample text="Dings" onClick={() => navigation.navigate('Calendar')} />
-            <ButtonSample text='📆'></ButtonSample>
-            <ButtonSample text="☎️DingsDongs" onClick={() => window.location.href='./compoments/CalendarFirebase.js'} />
-                <ButtonSample text="Sache" onClick={() => navigation.navigate('CalendarFirebase')} />
+            <ButtonSample text='Dings'></ButtonSample>
+            <ButtonSample text="☎d" onClick={() => window.location.href='./compoments/CalendarFirebase.js'} />
+                <ButtonSample text="📆" onClick={() => navigation.navigate('CalendarFirebase')} />
             <ButtonSample text='🎭'></ButtonSample>
             <ButtonSample text='Test'></ButtonSample>
-            <ButtonSample text='King'></ButtonSample>
-            <ButtonSample text='King'></ButtonSample>
             <ButtonSample text='King'></ButtonSample>
                 </Grid>
         </View>
