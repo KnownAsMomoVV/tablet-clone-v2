@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StyleSheet, View } from 'react-native';
@@ -8,9 +8,10 @@ const Stack = createStackNavigator();
 import { Grid, Box } from '@chakra-ui/react';
 import CalendarView from "./compoments/CalendarView";
 import calendarFirebase from "./compoments/CalendarFirebase";
+//let url = "https://ping.checklyhq.com/f1ece931-1be8-44bf-b861-bb4e203a336d"
+//fetch(url).then(response => console.log(response))
 
 import {Button} from "@chakra-ui/button";
-
 function HomeScreen({ navigation }) {
     return (
         <View style={styles.container}>
@@ -30,6 +31,16 @@ function HomeScreen({ navigation }) {
 }
 
 export default function App() {
+    useEffect(() => {
+        // Heartbeat URL
+        const url = "https://ping.checklyhq.com/f1ece931-1be8-44bf-b861-bb4e203a336d";
+
+        // A GET request to the Heartbeat
+        fetch(url)
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error("Error pinging Heartbeat:", error));
+    }, []);
     return (
         <ChakraBaseProvider>
         <NavigationContainer>
