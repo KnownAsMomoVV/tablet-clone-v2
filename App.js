@@ -17,6 +17,7 @@ function HomeScreen({ navigation }) {
         <View style={styles.container}>
             <Grid templateColumns="repeat(3, 1fr)" templateRows="repeat(3, 1fr)" gap={6}>
             <ButtonSample text='Dongs'></ButtonSample>
+            <Sjdaoisdoashdoah text='Dongs'></Sjdaoisdoashdoah>
             <ButtonSample text="☎️" onClick={() => navigation.navigate('Events')} />
             <ButtonSample text="Dings" onClick={() => navigation.navigate('Calendar')} />
             <ButtonSample text='Dings'></ButtonSample>
@@ -30,7 +31,7 @@ function HomeScreen({ navigation }) {
     );
 }
 
-export default function Apps() {
+export default function App() {
     useEffect(() => {
         // Heartbeat URL
         const url = "https://ping.checklyhq.com/f1ece931-1be8-44bf-b861-bb4e203a336d";
