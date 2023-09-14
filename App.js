@@ -36,19 +36,27 @@ export default function App() {
         // Heartbeat URL
         const url = "https://ping.checklyhq.com/f1ece931-1be8-44bf-b861-bb4e203a336d";
 
-        // A GET request to the Heartbeat
-        fetch(url, {
-            method: 'GET',
-            mode: 'no-cors',
-        })
-            .then(() => {
-                // Log confirmation every time the Heartbeat URL is pinged.
-                console.log('Heartbeat pinged successfully');
+        const pingHeartbeat = () => {
+            // A GET request to the Heartbeat
+            fetch(url, {
+                method: 'GET',
+                mode: 'no-cors',
             })
-            .catch(error => {
-                // Log any errors if they occur.
-                console.error("Error pinging Heartbeat:", error);
-            });
+                .then(() => {
+                    // Log confirmation every time the Heartbeat URL is pinged.
+                    console.log('Heartbeat pinged successfully');
+                })
+                .catch(error => {
+                    // Log any errors if they occur.
+                    console.error("Error pinging Heartbeat:", error);
+                });
+        };
+        // Ping immediately upon mount
+        pingHeartbeat();
+        // Set up an interval to ping every 30 seconds
+        const intervalID = setInterval(pingHeartbeat, 30000);
+        // Cleanup: clear the interval when the component is unmounted
+        return () => clearInterval(intervalID);
     }, []);
     return (
         <ChakraBaseProvider>
