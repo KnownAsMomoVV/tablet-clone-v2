@@ -23,7 +23,7 @@ function HomeScreen({ navigation }) {
                 <ButtonSample text="📆" onClick={() => navigation.navigate('CalendarFirebase')} />
             <ButtonSample text='🎭'></ButtonSample>
             <ButtonSample text='Test'></ButtonSample>
-            <ButtonSample text='King'></ButtonSample>
+            <ButtonSample text='Kings'></ButtonSample>
                 </Grid>
         </View>
     );
