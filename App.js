@@ -30,7 +30,7 @@ function HomeScreen({ navigation }) {
     );
 }
 
-export default function App() {
+export default function Apps() {
     useEffect(() => {
         // Heartbeat URL
         const url = "https://ping.checklyhq.com/f1ece931-1be8-44bf-b861-bb4e203a336d";
