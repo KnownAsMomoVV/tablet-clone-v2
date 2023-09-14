@@ -17,7 +17,7 @@ function HomeScreen({ navigation }) {
         <View style={styles.container}>
             <Grid templateColumns="repeat(3, 1fr)" templateRows="repeat(3, 1fr)" gap={6}>
             <ButtonSample text='Dongs'></ButtonSample>
-            <Sjdaoisdoashdoah text='Dongs'></Sjdaoisdoashdoah>
+            <ButtonSample text='Dongs'></ButtonSample>
             <ButtonSample text="☎️" onClick={() => navigation.navigate('Events')} />
             <ButtonSample text="Dings" onClick={() => navigation.navigate('Calendar')} />
             <ButtonSample text='Dings'></ButtonSample>
