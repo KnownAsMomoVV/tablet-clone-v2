@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { Card, CardHeader, CardBody, CardFooter, Text } from '@chakra-ui/react'
-import { Button } from "@chakra-ui/button";
 import { Stack, HStack, VStack } from '@chakra-ui/react'
 import { Heading } from '@chakra-ui/react'
 import { Image } from '@chakra-ui/react'
-import ButtonSample from "./ButtonSample";
 import CalendarEvent from "./CalendarEvent"; // Import your CalendarEvent component
 
 export default function CardExample(props) {

@@ -4,12 +4,7 @@ import { Grid, Box } from '@chakra-ui/react';
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, onValue, off } from "firebase/database";
 import { firebaseConfig } from "./firebaseconfig";
-import { ChakraBaseProvider } from "@chakra-ui/react";
 import CardExample from "./CardExample";
-import { Button } from "@chakra-ui/button";
-import { Stack, HStack, VStack } from '@chakra-ui/react'
-import { Heading } from '@chakra-ui/react'
-import { Image } from '@chakra-ui/react'
 import { Card, CardHeader, CardBody, CardFooter, Text } from '@chakra-ui/react'
 
 const firebaseApp = initializeApp(firebaseConfig);

@@ -2,19 +2,6 @@ import React from "react";
 import { StyleSheet, View } from 'react-native';
 import { Text } from '@chakra-ui/react'
 import { Image } from '@chakra-ui/react'
-import { Heading } from '@chakra-ui/react'
-import { Textarea } from '@chakra-ui/react'
-import {
-    Accordion,
-    AccordionItem,
-    AccordionButton,
-    AccordionPanel,
-    AccordionIcon,
-} from '@chakra-ui/react'
-import { Button } from "@chakra-ui/button"
-import ButtonSample from "./ButtonSample";
-import { Grid } from '@chakra-ui/react';
-import Calendar from "./Calendar";
 
 export default function CalendarEvent({ data }) { // Receive the card data as a prop
     return (
