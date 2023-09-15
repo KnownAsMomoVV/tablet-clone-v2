@@ -14,6 +14,7 @@ export default function CardExample(props) {
     return (
         <TouchableOpacity onPress={handleNavigation}>
             <Card
+                data-testid="card"
                 direction={{ base: 'column', sm: 'row' }}
                 overflow='hidden'
                 variant='outline'
@@ -23,20 +24,14 @@ export default function CardExample(props) {
             >
                 <Image
                     objectFit='cover'
-                    maxW={{ base: '100%', sm: '200px' }}
+                    w='100%'  // Takes up the full width of the parent container
+                    h='100%'  // Takes up the full height of the parent container
                     borderRadius="md"
                     src={props.ImageURL}
-                    alt='Caffe Latte'
+                    alt='IchHasseMeinLeben'
                 />
                 <Stack spacing={4}>
                     <CardBody>
-                        <Heading size='md'>{props.heading}</Heading>
-                        <Text py='2'>
-                            {props.text}
-                        </Text>
-                        <Text>
-                            {props.date}
-                        </Text>
                     </CardBody>
                 </Stack>
             </Card>

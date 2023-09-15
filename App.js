@@ -9,8 +9,6 @@ import { Grid, Box } from '@chakra-ui/react';
 import CalendarView from "./compoments/CalendarView";
 import calendarFirebase from "./compoments/CalendarFirebase";
 import CardDetailScreen from "./compoments/CardDetailScreen";
-//let url = "https://ping.checklyhq.com/f1ece931-1be8-44bf-b861-bb4e203a336d"
-//fetch(url).then(response => console.log(response))
 
 import {Button} from "@chakra-ui/button";
 function HomeScreen({ navigation }) {
@@ -48,7 +46,6 @@ const lightTheme = StyleSheet.create({
         justifyContent: 'center',
         padding: 20,
     },
-    // ... any other styles for light mode ...
 });
 
 const darkTheme = StyleSheet.create({
@@ -59,7 +56,6 @@ const darkTheme = StyleSheet.create({
         justifyContent: 'center',
         padding: 20,
     },
-    // ... any other styles for dark mode ...
 });
 
 export default function App() {
@@ -74,19 +70,14 @@ export default function App() {
                 mode: 'no-cors',
             })
                 .then(() => {
-                    // Log confirmation every time the Heartbeat URL is pinged.
                     console.log('Heartbeat pinged successfully');
                 })
                 .catch(error => {
-                    // Log any errors if they occur.
                     console.error("Error pinging Heartbeat:", error);
                 });
         };
-        // Ping immediately upon mount
         pingHeartbeat();
-        // Set up an interval to ping every 30 seconds
         const intervalID = setInterval(pingHeartbeat, 30000);
-        // Cleanup: clear the interval when the component is unmounted
         return () => clearInterval(intervalID);
     }, []);
     return (
@@ -95,9 +86,9 @@ export default function App() {
                 <Stack.Navigator
                     initialRouteName="Home"
                     screenOptions={{
-                        headerStyle: { backgroundColor: '#282c34' }, // Dark background
-                        headerTintColor: '#fff', // White text
-                        headerTitleStyle: { fontWeight: 'bold' }, // Bold text for header
+                        headerStyle: { backgroundColor: '#282c34' },
+                        headerTintColor: '#fff',
+                        headerTitleStyle: { fontWeight: 'bold' },
                     }}
                 >
                     <Stack.Screen name="Home" component={HomeScreen} />
@@ -113,9 +104,9 @@ export default function App() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f4f4f8', // A soft gray background
+        backgroundColor: '#f4f4f8',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: 20, // Consistent padding for better spacing
+        padding: 20,
     },
 });
