@@ -16,12 +16,11 @@ import { useDarkMode } from './contexts/DarkModeContext';
 import {Button} from "@chakra-ui/button";
 
 function HomeScreen({ navigation }) {
-    const { isDarkMode, toggleDarkMode } = useDarkMode();
+    const { isDarkMode, toggleDarkMode, styles } = useDarkMode();
 
-    const currentTheme = isDarkMode ? darkTheme : lightTheme;
 
     return (
-        <View style={currentTheme.container}>
+        <View style={styles.container}>
             <Button onClick={toggleDarkMode}>
                 {isDarkMode ? '☀️' : '🌙'}
             </Button>
@@ -39,25 +38,6 @@ function HomeScreen({ navigation }) {
         </View>
     );
 }
-const lightTheme = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#f4f4f8',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 20,
-    },
-});
-
-const darkTheme = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#282c34',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 20,
-    },
-});
 
 export default function App() {
     useEffect(() => {

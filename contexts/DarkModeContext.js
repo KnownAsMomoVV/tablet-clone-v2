@@ -11,6 +11,13 @@ export const lightStyles = {
         backgroundColor: '#f4f4f8',
         // ... other styles specific to light mode
     },
+    container: {
+        flex: 1,
+        backgroundColor: '#f4f4f8',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 20,
+    },
     month: {
         backgroundColor: 'gray.200',
         color: 'black'
@@ -23,6 +30,13 @@ export const lightStyles = {
 };
 
 export const darkStyles = {
+    container: {
+        flex: 1,
+        backgroundColor: '#282c34',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 20,
+    },
     calendar: {
         backgroundColor: '#282c34',
         // ... other styles specific to dark mode
