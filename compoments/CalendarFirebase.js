@@ -61,9 +61,6 @@ function Calendar(props) {
     return (
         <div style={styles.outerDiv}>
         <Box className="calendar" style={styles.calendar} p={5}>
-            <Button onClick={toggleDarkMode}>
-                {isDarkMode ? 'Switch to Light Mode ☀️' : 'Switch to Dark Mode 🌙'}
-            </Button>
             <Text fontSize="2xl" mb={5}>Calendar</Text>
             {/* Render month grid */}
             <Grid templateColumns="repeat(3, 1fr)" gap={5}>
