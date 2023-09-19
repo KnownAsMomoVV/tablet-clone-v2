@@ -9,16 +9,17 @@ import { Grid, Box } from '@chakra-ui/react';
 import CalendarView from "./compoments/CalendarView";
 import calendarFirebase from "./compoments/CalendarFirebase";
 import CardDetailScreen from "./compoments/CardDetailScreen";
-
+//dark mode
+import {DarkModeProvider} from "./contexts/DarkModeContext";
+import { useDarkMode } from './contexts/DarkModeContext';
+// darkmode
 import {Button} from "@chakra-ui/button";
-function HomeScreen({ navigation }) {
-    const [isDarkMode, setIsDarkMode] = useState(false); // State to manage dark mode
 
-    const toggleDarkMode = () => {
-        setIsDarkMode(!isDarkMode);
-    };
+function HomeScreen({ navigation }) {
+    const { isDarkMode, toggleDarkMode } = useDarkMode();
 
     const currentTheme = isDarkMode ? darkTheme : lightTheme;
+
     return (
         <View style={currentTheme.container}>
             <Button onClick={toggleDarkMode}>
@@ -82,6 +83,7 @@ export default function App() {
     }, []);
     return (
         <ChakraBaseProvider>
+            <DarkModeProvider>
             <NavigationContainer>
                 <Stack.Navigator
                     initialRouteName="Home"
@@ -97,6 +99,7 @@ export default function App() {
                     <Stack.Screen name="CardDetailScreen" component={CardDetailScreen} />
                 </Stack.Navigator>
             </NavigationContainer>
+            </DarkModeProvider>
         </ChakraBaseProvider>
     );
 }

@@ -5,6 +5,8 @@ import { initializeApp } from "firebase/app";
 import { getDatabase, ref, onValue, off } from "firebase/database";
 import { firebaseConfig } from "./firebaseconfig";
 import CardExample from "./CardExample";
+import {useDarkMode} from "../contexts/DarkModeContext";
+import {Button} from "@chakra-ui/button";
 
 // Initialize Firebase with the given configuration
 const firebaseApp = initializeApp(firebaseConfig);
@@ -17,6 +19,9 @@ const months = [
 
 // Main Calendar component that interacts with Firebase and renders the calendar and cards
 function Calendar(props) {
+    // dark mode is here
+    const { isDarkMode, toggleDarkMode, styles } = useDarkMode();
+    // dark mode is here
     // State variables
     const [selectedCardIndex, setSelectedCardIndex] = useState(null);
     const [visibleMonth, setVisibleMonth] = useState(null);
@@ -54,7 +59,11 @@ function Calendar(props) {
     }, [visibleMonth]);
 
     return (
-        <Box className="calendar" p={5}>
+        <div style={styles.outerDiv}>
+        <Box className="calendar" style={styles.calendar} p={5}>
+            <Button onClick={toggleDarkMode}>
+                {isDarkMode ? 'Switch to Light Mode ☀️' : 'Switch to Dark Mode 🌙'}
+            </Button>
             <Text fontSize="2xl" mb={5}>Calendar</Text>
             {/* Render month grid */}
             <Grid templateColumns="repeat(3, 1fr)" gap={5}>
@@ -86,19 +95,22 @@ function Calendar(props) {
                 </Grid>
             </Box>
         </Box>
+        </div>
     );
 }
 
 // Month component to render individual month boxes
 function Month({ name, isSelected, onSelect }) {
+    const { isDarkMode, styles } = useDarkMode();
+
     return (
         <Box
             p={4}
-            bg={isSelected ? 'blue.500' : 'gray.200'}
+            bg={isSelected ? styles.month.backgroundColor : 'gray.200'}
             borderRadius="md"
             textAlign="center"
             cursor="pointer"
-            color={isSelected ? 'white' : 'black'}
+            color={isSelected ? styles.month.color : 'black'}
             _hover={{ bg: isSelected ? 'blue.600' : 'gray.300' }}
             onClick={onSelect}
         >

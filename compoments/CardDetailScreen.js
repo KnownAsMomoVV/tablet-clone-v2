@@ -1,9 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Image, Box } from '@chakra-ui/react';
+import {useDarkMode} from "../contexts/DarkModeContext";
 
 function CardDetailScreen({ route }) {
     const { ImageURL, heading, text, date } = route.params.card;
+    const { isDarkMode, toggleDarkMode } = useDarkMode();
 
     return (
         <View style={styles.container}>
