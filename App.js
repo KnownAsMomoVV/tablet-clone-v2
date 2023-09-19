@@ -13,7 +13,6 @@ import CardDetailScreen from "./compoments/CardDetailScreen";
 //dark mode
 import {DarkModeProvider} from "./contexts/DarkModeContext";
 import {useDarkMode} from './contexts/DarkModeContext';
-
 const Stack = createStackNavigator();
 
 function HomeScreen({ navigation }) {

@@ -5,10 +5,10 @@ import {useDarkMode} from "../contexts/DarkModeContext";
 
 function CardDetailScreen({ route }) {
     const { ImageURL, heading, text, date } = route.params.card;
-    const { isDarkMode, toggleDarkMode } = useDarkMode();
+    const { isDarkMode, toggleDarkMode, styles: themeStyles } = useDarkMode();
 
     return (
-        <View style={styles.container}>
+        <View style={themeStyles.container}>
             <CardImage src={ImageURL} />
             <View style={styles.infoContainer}>
                 <CardInfo detail={heading} />
@@ -20,8 +20,9 @@ function CardDetailScreen({ route }) {
 }
 
 function CardImage({ src }) {
+    const { isDarkMode, toggleDarkMode, styles: themeStyles } = useDarkMode();
     return (
-        <Box style={styles.imageContainer}>
+        <Box style={themeStyles.imageContainer}>
             <Image
                 objectFit='contain'
                 width="100%"
@@ -36,8 +37,10 @@ function CardImage({ src }) {
 }
 
 function CardInfo({ label, detail }) {
+    const { styles } = useDarkMode();
+    const { isDarkMode, toggleDarkMode, styles: themeStyles } = useDarkMode();
     return (
-        <View style={styles.cardInfoContainer}>
+        <View style={themeStyles.cardInfoContainer}>
             <Text style={styles.cardInfoLabel}>{label}</Text>
             <Text style={styles.cardInfoText}>{detail}</Text>
         </View>
@@ -64,7 +67,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginBottom: 12,
         alignItems: 'center',
-        backgroundColor: '#f7f7f9',
         paddingHorizontal: 10,
         paddingVertical: 5,
         borderRadius: 12,

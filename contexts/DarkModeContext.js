@@ -11,6 +11,13 @@ export const lightStyles = {
         backgroundColor: '#f4f4f8',
         // ... other styles specific to light mode
     },
+    lightContainer: {
+        backgroundColor: '#f4f4f8',
+        // ... other light mode styles
+    },
+    lightHeaderText: {
+        color: '#333',
+    },
     container: {
         flex: 1,
         backgroundColor: '#f4f4f8',
@@ -25,11 +32,56 @@ export const lightStyles = {
     },
     outerDiv: {
         backgroundColor: '#f4f4f8'
-    }
+    },
+    imageContainer: {
+        flex: 3,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    infoContainer: {
+        flex: 2,
+        justifyContent: 'center',
+        paddingHorizontal: 20,
+        backgroundColor: '#e0e0e0', // slightly darker background for the info container in light mode
+    },
+    cardInfoContainer: {
+        flexDirection: 'row',
+        marginBottom: 12,
+        alignItems: 'center',
+        paddingHorizontal: 10,
+        paddingVertical: 5,
+        borderRadius: 12,
+        elevation: 3,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.1,
+        shadowRadius: 2,
+        backgroundColor: '#fff', // white background for card info in light mode
+    },
+    cardInfoText: {
+        fontSize: 18,
+        color: '#333', // dark gray for text in light theme
+        marginLeft: 6,
+    },
+    cardInfoLabel: {
+        fontSize: 20,
+        fontWeight: '600',
+        color: '#555', // slightly lighter gray for labels in light theme
+    },
     // ... other component styles for light mode
 };
 
 export const darkStyles = {
+    darkContainer: {
+        backgroundColor: '#282c34',
+        // ... other dark mode styles
+    },
+    darkHeaderText: {
+        color: '#fff',
+    },
     container: {
         flex: 1,
         backgroundColor: '#282c34',
@@ -48,7 +100,46 @@ export const darkStyles = {
     },
     outerDiv: {
         backgroundColor: '#282c34' // or any other dark color you'd like
-    }
+    },
+    imageContainer: {
+        flex: 3,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    infoContainer: {
+        flex: 2,
+        justifyContent: 'center',
+        paddingHorizontal: 20,
+        backgroundColor: '#333', // slightly lighter background for the info container in dark mode
+    },
+    cardInfoContainer: {
+        flexDirection: 'row',
+        marginBottom: 12,
+        alignItems: 'center',
+        paddingHorizontal: 10,
+        paddingVertical: 5,
+        borderRadius: 12,
+        elevation: 3,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.1,
+        shadowRadius: 2,
+        backgroundColor: '#444', // even darker background for card info in dark mode
+    },
+    cardInfoText: {
+        fontSize: 18,
+        color: '#ddd', // light gray for text in dark theme
+        marginLeft: 6,
+    },
+    cardInfoLabel: {
+        fontSize: 20,
+        fontWeight: '600',
+        color: '#bbb', // slightly lighter gray for labels in dark theme
+    },
+
     // ... other component styles for dark mode
 };
 
