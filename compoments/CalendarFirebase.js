@@ -1,23 +1,28 @@
 import React, { useState, useEffect } from "react";
 import '/assets/calendar.css';
-import { Grid, Box } from '@chakra-ui/react';
+import { Grid, Box, Text } from '@chakra-ui/react';
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, onValue, off } from "firebase/database";
 import { firebaseConfig } from "./firebaseconfig";
 import CardExample from "./CardExample";
-import { Card, CardHeader, CardBody, CardFooter, Text } from '@chakra-ui/react'
 
+// Initialize Firebase with the given configuration
 const firebaseApp = initializeApp(firebaseConfig);
 const db = getDatabase();
 const months = [
+    // Array of month names used for display
     "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
 ];
+
+// Main Calendar component that interacts with Firebase and renders the calendar and cards
 function Calendar(props) {
+    // State variables
     const [selectedCardIndex, setSelectedCardIndex] = useState(null);
     const [visibleMonth, setVisibleMonth] = useState(null);
     const [cards, setCards] = useState([]);
 
+    // Effect to fetch the current visible month from Firebase
     useEffect(() => {
         const monthRef = ref(db, 'visibleMonth/cards');
         onValue(monthRef, (snapshot) => {
@@ -28,11 +33,10 @@ function Calendar(props) {
                 setVisibleMonth(monthIndex);
             }
         });
-        return () => {
-            off(monthRef);
-        };
+        return () => off(monthRef);
     }, []);
 
+    // Effect to fetch cards for the selected visible month from Firebase
     useEffect(() => {
         if (visibleMonth !== null) {
             const currentMonthName = months[visibleMonth].toLowerCase();
@@ -40,68 +44,52 @@ function Calendar(props) {
             onValue(cardRef, (snapshot) => {
                 const cardData = snapshot.val();
                 if (cardData && Array.isArray(cardData)) {
-                    // Filter out any null or undefined values, then set the cards
                     setCards(cardData.filter(card => card !== null));
                 } else {
                     setCards([]);
                 }
             });
+            return () => off(cardRef);
         }
-        return () => {
-            if (visibleMonth !== null) {
-                const currentMonthName = months[visibleMonth].toLowerCase();
-                const cardRef = ref(db, `visibleMonth/cards/${currentMonthName}`);
-                off(cardRef);
-            }
-        };
     }, [visibleMonth]);
-    console.log("Selected Card Index in Calendar:", selectedCardIndex);
-
 
     return (
         <Box className="calendar" p={5}>
             <Text fontSize="2xl" mb={5}>Calendar</Text>
+            {/* Render month grid */}
             <Grid templateColumns="repeat(3, 1fr)" gap={5}>
                 {months.map((month, index) => (
                     <Month
                         key={index}
                         name={month}
                         isSelected={visibleMonth === index}
-                        onSelect={() => {
-                            setVisibleMonth(index);
-                        }}
+                        onSelect={() => setVisibleMonth(index)}
                     />
                 ))}
             </Grid>
+            {/* Render cards for selected month */}
             <Box mt={5}>
                 <Grid templateColumns="repeat(3, 1fr)" gap={5}>
-                    {cards.map((card, index) => {
-                        const isThisCardSelected = selectedCardIndex === index;
-                        console.log("Rendering Card:", index, "Is Selected:", isThisCardSelected);
-                        return (
-                            <CardExample
-                                key={index}
-                                index={index}
-                                text={card.description}
-                                heading={card.name}
-                                date={card.date}
-                                ImageURL={card.pictureURL}
-                                isSelected={isThisCardSelected}
-                                onSelect={() => {
-                                    const newIndex = index === selectedCardIndex ? null : index;
-                                    setSelectedCardIndex(newIndex);
-                                }}
-                                navigation={props.navigation} // Pass down the navigation prop
-                            />
-                        );
-                    })}
+                    {cards.map((card, index) => (
+                        <CardExample
+                            key={index}
+                            index={index}
+                            text={card.description}
+                            heading={card.name}
+                            date={card.date}
+                            ImageURL={card.pictureURL}
+                            isSelected={selectedCardIndex === index}
+                            onSelect={() => setSelectedCardIndex(index === selectedCardIndex ? null : index)}
+                            navigation={props.navigation}
+                        />
+                    ))}
                 </Grid>
             </Box>
-
         </Box>
     );
 }
 
+// Month component to render individual month boxes
 function Month({ name, isSelected, onSelect }) {
     return (
         <Box

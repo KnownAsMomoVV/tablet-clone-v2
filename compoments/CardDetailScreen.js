@@ -1,9 +1,7 @@
-// Imports
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Image, Box } from '@chakra-ui/react';
 
-// CardDetailScreen Component
 function CardDetailScreen({ route }) {
     const { ImageURL, heading, text, date } = route.params.card;
 
@@ -19,14 +17,13 @@ function CardDetailScreen({ route }) {
     );
 }
 
-// CardImage Component
 function CardImage({ src }) {
     return (
         <Box style={styles.imageContainer}>
             <Image
-                objectFit='contain'   // Change to 'contain' so image isn't clipped
-                width="100%"          // Full width of its container
-                height="100%"         // Full height of its container
+                objectFit='contain'
+                width="100%"
+                height="100%"
                 maxHeight="90%"
                 borderRadius="md"
                 src={src}
@@ -36,7 +33,6 @@ function CardImage({ src }) {
     );
 }
 
-// CardInfo Component
 function CardInfo({ label, detail }) {
     return (
         <View style={styles.cardInfoContainer}>
@@ -46,17 +42,16 @@ function CardInfo({ label, detail }) {
     );
 }
 
-// Styles
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'row',
-        marginLeft: 20,        // Small margin to the left of the image
+        marginLeft: 20,
     },
     imageContainer: {
         flex: 3,
-        justifyContent: 'center',  // Center the image vertically
-        alignItems: 'center',      // Center the image horizontally
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     infoContainer: {
         flex: 2,
@@ -93,5 +88,5 @@ const styles = StyleSheet.create({
 
 });
 
-// Export
+
 export default CardDetailScreen;

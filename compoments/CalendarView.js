@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, View } from 'react-native';
-import Calendar from "./Calendar";
+import Calendar from "../old/Calendar";
 
 export default function CalendarView(props) {
     return (

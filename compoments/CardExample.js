@@ -1,7 +1,6 @@
 import React from "react";
 import { Card, CardHeader, CardBody, CardFooter, Text } from '@chakra-ui/react'
 import { Stack, HStack, VStack } from '@chakra-ui/react'
-import { Heading } from '@chakra-ui/react'
 import { Image } from '@chakra-ui/react'
 import { TouchableOpacity } from "react-native";
 
@@ -24,11 +23,11 @@ export default function CardExample(props) {
             >
                 <Image
                     objectFit='cover'
-                    w='100%'  // Takes up the full width of the parent container
-                    h='100%'  // Takes up the full height of the parent container
+                    w='100%'
+                    h='100%'
                     borderRadius="md"
                     src={props.ImageURL}
-                    alt='IchHasseMeinLeben'
+                    alt='Das Event Könnte hier stehen'
                 />
                 <Stack spacing={4}>
                     <CardBody>
