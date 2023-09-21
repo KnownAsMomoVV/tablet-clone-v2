@@ -13,6 +13,7 @@ import CardDetailScreen from "./compoments/CardDetailScreen";
 //dark mode
 import {DarkModeProvider} from "./contexts/DarkModeContext";
 import {useDarkMode} from './contexts/DarkModeContext';
+import EventManager from "./compoments/EventManager";
 const Stack = createStackNavigator();
 
 function HomeScreen({ navigation }) {
@@ -22,7 +23,7 @@ function HomeScreen({ navigation }) {
         <View style={styles.container}>
             <Grid templateColumns="repeat(3, 1fr)" templateRows="repeat(3, 1fr)" gap={6}>
                 <ButtonSample icon={mdiCalendar} onClick={() => navigation.navigate('CalendarFirebase')} />
-                <ButtonSample icon={mdiWrenchClock} />
+                <ButtonSample icon={mdiMoonWaningCrescent} onClick={() => navigation.navigate('EventManager')} />
                 <ButtonSample icon={mdiWrenchClock} />
                 <ButtonSample icon={mdiWrenchClock} />
                 <ButtonSample icon={mdiWrenchClock} />
@@ -78,9 +79,10 @@ function App() {
                 })}
             >
                 <Stack.Screen name="Home" component={HomeScreen} />
-                <Stack.Screen name="CalendarFirebase" component={calendarFirebase} />
+                <Stack.Screen name="CalendarFirebase" component={calendarFirebase}/>
                 <Stack.Screen name="Calendar" component={CalendarView} />
                 <Stack.Screen name="CardDetailScreen" component={CardDetailScreen} />
+                <Stack.Screen name="EventManager" component={EventManager} />
             </Stack.Navigator>
         </NavigationContainer>
     );
