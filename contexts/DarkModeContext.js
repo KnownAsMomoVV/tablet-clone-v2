@@ -7,6 +7,7 @@ export const useDarkMode = () => {
 };
 
 export const lightStyles = {
+    textColor: '#333', // Text color for light mode
     calendar: {
         backgroundColor: '#f4f4f8',
         // ... other styles specific to light mode
@@ -75,6 +76,7 @@ export const lightStyles = {
 };
 
 export const darkStyles = {
+    textColor: '#fff', // Text color for dark mode
     darkContainer: {
         backgroundColor: '#282c34',
         // ... other dark mode styles

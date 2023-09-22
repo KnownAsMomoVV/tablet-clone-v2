@@ -4,6 +4,7 @@ import { Box, Text, Grid, Button, Input, Select } from '@chakra-ui/react';
 import { getDatabase, ref, onValue, off, set, remove } from 'firebase/database';
 import { initializeApp } from 'firebase/app';
 import { firebaseConfig } from './firebaseconfig';  // Adjust this import to your file structure
+import {useDarkMode} from "../contexts/DarkModeContext";
 import '../assets/EventManager.css';
 
 // Initialize Firebase with the given configuration
@@ -11,6 +12,7 @@ initializeApp(firebaseConfig);
 const db = getDatabase();
 
 const EventManager = () => {
+    const { isDarkMode, toggleDarkMode, styles } = useDarkMode(); // Use the hook
     const [events, setEvents] = useState([]);
     const [newEvent, setNewEvent] = useState({
         name: '',
@@ -72,8 +74,10 @@ const EventManager = () => {
 
 
     return (
-        <Box className="event-manager-container">
-            <Text className="event-manager-title">Event Manager</Text>
+        <Box className="event-manager-container" style={styles.container}>
+            <Text className="event-manager-title" style={{ color: styles.textColor }}>
+                Event Manager
+            </Text>
             <Select onChange={(e) => setSelectedMonth(e.target.value)} value={selectedMonth}>
                 {months.map((month, index) => (
                     <option key={index} value={month}>{month.charAt(0).toUpperCase() + month.slice(1)}</option>
@@ -86,6 +90,7 @@ const EventManager = () => {
                     value={newEvent.name}
                     onChange={handleChange}
                     placeholder="Event Name"
+                    style={styles.input}
                 />
                 <Input
                     type="text"
@@ -108,11 +113,11 @@ const EventManager = () => {
                     onChange={handleChange}
                     placeholder="Event Picture URL"
                 />
-                <Button onClick={addEvent}>Add Event</Button>
+                <Button onClick={addEvent} style={styles.button}>Add Event</Button>
             </Box>
             <Grid templateColumns="repeat(3, 1fr)" gap={5} mt={5}>
                 {events.map((event) => (
-                    <Box key={event.id} className="event-card">
+                    <Box key={event.id} className="event-card" style={styles.card}>
                         <Text>{event.name}</Text>
                         <Text>{event.description}</Text>
                         <Text>{new Date(event.date).toLocaleDateString()}</Text>

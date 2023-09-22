@@ -47,6 +47,8 @@ function CardInfo({ label, detail }) {
     );
 }
 
+// Google Maps API
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
