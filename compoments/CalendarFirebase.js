@@ -6,7 +6,8 @@ import { getDatabase, ref, onValue, off } from "firebase/database";
 import { firebaseConfig } from "./firebaseconfig";
 import CardExample from "./CardExample";
 import {useDarkMode} from "../contexts/DarkModeContext";
-import {Button} from "@chakra-ui/button";
+import { Pagination } from 'antd';
+
 
 // Initialize Firebase with the given configuration
 const firebaseApp = initializeApp(firebaseConfig);
@@ -21,6 +22,11 @@ function Calendar(props) {
     const [selectedCardIndex, setSelectedCardIndex] = useState(null);
     const [visibleMonth, setVisibleMonth] = useState(new Date().getMonth()); // Initialize to current month
     const [cards, setCards] = useState([]);
+    const paginationStyles = {
+        backgroundColor: styles.pagination.itemBackgroundColor,
+        borderColor: styles.pagination.itemBorderColor,
+        color: styles.pagination.itemTextColor,
+    };
 
     useEffect(() => {
         if (visibleMonth !== null) {
@@ -50,19 +56,23 @@ function Calendar(props) {
                 >
                     Select Month:
                 </label>
-                <input
-                    type="range"
-                    id="month-slider"
-                    name="month-slider"
-                    min="0"
-                    max="11"
-                    value={visibleMonth}
-                    onChange={(e) => setVisibleMonth(Number(e.target.value))}
+                <div
                     style={{
-                        background: isDarkMode ? '#333' : '#ccc',
-                        color: styles.textColor // Use color from context styles
+                        backgroundColor: paginationStyles.itemBackgroundColor,
+                        borderColor: paginationStyles.itemBorderColor,
                     }}
-                />
+                >
+                    <Pagination
+                        simple
+                        defaultCurrent={visibleMonth + 1}
+                        total={12}
+                        pageSize={1}
+                        style={{
+                            color: paginationStyles.itemTextColor
+                        }}
+                        onChange={(page) => setVisibleMonth(page - 1)}
+                    />
+                </div>
                 <Text style={{ color: styles.textColor }}>{months[visibleMonth]}</Text>
 
                 {/* Render cards for selected month */}

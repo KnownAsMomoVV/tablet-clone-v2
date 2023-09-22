@@ -7,6 +7,11 @@ export const useDarkMode = () => {
 };
 
 export const lightStyles = {
+    pagination: {
+        itemBackgroundColor: '#fff',
+        itemBorderColor: '#ccc',
+        itemTextColor: '#333',
+    },
     textColor: '#333', // Text color for light mode
     calendar: {
         backgroundColor: '#f4f4f8',
@@ -76,6 +81,11 @@ export const lightStyles = {
 };
 
 export const darkStyles = {
+    pagination: {
+        itemBackgroundColor: '#282c34',
+        itemBorderColor: '#282c34',
+        itemTextColor: '#fff',
+    },
     textColor: '#fff', // Text color for dark mode
     darkContainer: {
         backgroundColor: '#282c34',
