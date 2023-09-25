@@ -42,11 +42,13 @@ This project is a React Native application optimized for tablet devices that ser
     npm install
     # or
     yarn install
+       # or
+    bun install
     \```
 
-4. Set up your Firebase configuration by creating a `firebaseConfig.js` in the `src` folder and adding your Firebase credentials.
+5. Set up your Firebase configuration by creating a `firebaseConfig.js` in the `src` folder and adding your Firebase credentials.
 
-5. Run the application:
+6. Run the application:
     \```bash
     npm start
     # or
