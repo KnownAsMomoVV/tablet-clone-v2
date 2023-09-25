@@ -2,9 +2,10 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Image, Box } from '@chakra-ui/react';
 import {useDarkMode} from "../contexts/DarkModeContext";
-
+import MapView from "./MapView"
+import '../assets/Map.css'
 function CardDetailScreen({ route }) {
-    const { ImageURL, heading, text, date } = route.params.card;
+    const { ImageURL, heading, text, date, coordinates } = route.params.card;
     const { isDarkMode, toggleDarkMode, styles: themeStyles } = useDarkMode();
 
     return (
@@ -14,6 +15,7 @@ function CardDetailScreen({ route }) {
                 <CardInfo detail={heading} />
                 <CardInfo detail={text} />
                 <CardInfo detail={date} />
+                <MapView detail={coordinates} />
             </View>
         </View>
     );
@@ -91,7 +93,9 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         color: '#555',
     },
-
+    cardInfoCoordinates: {
+        display: 'none'
+    }
 });
 
 

@@ -85,6 +85,7 @@ function Calendar(props) {
                                 text={card.description}
                                 heading={card.name}
                                 date={card.date}
+                                coordinates={card.coordinates}
                                 ImageURL={card.pictureURL}
                                 isSelected={selectedCardIndex === index}
                                 onSelect={() => setSelectedCardIndex(index === selectedCardIndex ? null : index)}

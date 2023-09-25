@@ -5,7 +5,7 @@ import { StyleSheet, View } from 'react-native';
 import ButtonSample from "./compoments/ButtonSample";
 import { ChakraBaseProvider} from "@chakra-ui/react";
 import Icon from '@mdi/react';
-import { mdiCalendar, mdiWrenchClock, mdiMoonWaningCrescent, mdiWhiteBalanceSunny } from '@mdi/js';
+import { mdiCalendar, mdiWrenchClock, mdiMoonWaningCrescent, mdiWhiteBalanceSunny, mdiCalendarEdit } from '@mdi/js';
 import { Grid, Box } from '@chakra-ui/react';
 import CalendarView from "./compoments/CalendarView";
 import calendarFirebase from "./compoments/CalendarFirebase";
@@ -23,7 +23,7 @@ function HomeScreen({ navigation }) {
         <View style={styles.container}>
             <Grid templateColumns="repeat(3, 1fr)" templateRows="repeat(3, 1fr)" gap={6}>
                 <ButtonSample icon={mdiCalendar} onClick={() => navigation.navigate('CalendarFirebase')} />
-                <ButtonSample icon={mdiMoonWaningCrescent} onClick={() => navigation.navigate('EventManager')} />
+                <ButtonSample icon={mdiCalendarEdit} onClick={() => navigation.navigate('EventManager')} />
                 <ButtonSample icon={mdiWrenchClock} />
                 <ButtonSample icon={mdiWrenchClock} />
                 <ButtonSample icon={mdiWrenchClock} />
