@@ -37,7 +37,8 @@ export const lightStyles = {
         // ... other styles specific to light mode for month
     },
     outerDiv: {
-        backgroundColor: '#f4f4f8'
+        backgroundColor: '#f4f4f8',
+        height: '100%'
     },
     imageContainer: {
         flex: 3,
@@ -87,6 +88,7 @@ export const darkStyles = {
         itemTextColor: '#fff',
     },
     textColor: '#fff', // Text color for dark mode
+    selectItemColor: '#000',
     darkContainer: {
         backgroundColor: '#282c34',
         // ... other dark mode styles
@@ -105,13 +107,18 @@ export const darkStyles = {
         backgroundColor: '#282c34',
         // ... other styles specific to dark mode
     },
+    calendar_dark: {
+        backgroundColor: '#282c34',
+        // ... other styles specific to dark mode
+    },
     month: {
         backgroundColor: 'blue.500',
         color: 'white'
         // ... other styles specific to dark mode for month
     },
     outerDiv: {
-        backgroundColor: '#282c34' // or any other dark color you'd like
+        backgroundColor: '#282c34', // or any other dark color you'd like
+        height: '100%'
     },
     imageContainer: {
         flex: 3,

@@ -8,7 +8,6 @@ import CardExample from "./CardExample";
 import {useDarkMode} from "../contexts/DarkModeContext";
 import { Pagination } from 'antd';
 
-
 // Initialize Firebase with the given configuration
 const firebaseApp = initializeApp(firebaseConfig);
 const db = getDatabase();
