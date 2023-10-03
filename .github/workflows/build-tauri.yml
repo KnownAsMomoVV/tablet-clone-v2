@@ -7,11 +7,18 @@ on:
 
 jobs:
   build:
-    runs-on: macOS-latest # Changed to macOS runner
+    runs-on: macOS-latest # macOS runner
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
+      # Cache node_modules
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: node-modules-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install Rust
         run: |
@@ -25,10 +32,18 @@ jobs:
           node-version: '14' # Adjust this to your project's Node.js version
 
       - name: Install npm dependencies
+        if: steps.cache-primes.outputs.cache-hit != 'true'  # Only run if cache miss
         run: npm install
 
       - name: Build React app
         run: npx expo export:web
+
+      # Cache Cargo registry
+      - name: Cache Cargo registry
+        uses: actions/cache@v2
+        with:
+          path: ~/.cargo/registry
+          key: cargo-registry-${{ hashFiles('**/Cargo.lock') }}
 
       - name: Build Tauri app
         run: |
@@ -50,12 +65,12 @@ jobs:
           release_name: Release ${{ github.ref }}
           draft: false
           prerelease: false
-          token: ${{ secrets.GITHUB_TOKEN }}  # Added this line
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload Release Asset
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./src-tauri/target/release/bundle/dmg/tablet-clone.dmg # Replace with actual path and file extension
-          asset_name: tablet-clone.dmg # Replace with actual file name and extension
-          asset_content_type: application/octet-stream # Adjust if necessary
+          asset_path: ./src-tauri/target/release/bundle/dmg/tablet-clone.dmg
+          asset_name: tablet-clone.dmg
+          asset_content_type: application/octet-stream
