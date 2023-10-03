@@ -73,6 +73,6 @@ jobs:
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./src-tauri/target/release/bundle/dmg/tablet-clone.dmg
-          asset_name: tablet-clone.dmg
+          asset_path: /Users/runner/work/tablet-clone-v2/tablet-clone-v2/src-tauri/target/release/bundle/dmg/tablet-clone_0.1.0_x64.dmg
+          asset_name: tablet-clone_0.1.0_x64.dmg  # Updated the file name
           asset_content_type: application/octet-stream
