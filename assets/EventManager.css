@@ -1,5 +1,7 @@
 /* EventManager.css */
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 .event-manager-container {
     padding: 20px;
     border-radius: 12px;

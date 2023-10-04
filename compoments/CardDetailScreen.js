@@ -4,19 +4,25 @@ import { Image, Box } from '@chakra-ui/react';
 import {useDarkMode} from "../contexts/DarkModeContext";
 import MapView from "./MapView"
 import '../assets/Map.css'
+import { useContext } from 'react';
+import { LanguageContext } from '../contexts/LanguageContext';
+
 function CardDetailScreen({ route }) {
+    const { language } = useContext(LanguageContext); // access the current language
     const { ImageURL, heading, text, date, coordinates } = route.params.card;
     const { isDarkMode, toggleDarkMode, styles: themeStyles } = useDarkMode();
 
     return (
         <View style={themeStyles.container}>
+            <div style={styles.imageContainer}>
             <CardImage src={ImageURL} />
+            </div>
             <View style={styles.infoContainer}>
                 <CardInfo detail={heading} />
                 <CardInfo detail={text} />
                 <CardInfo detail={date} />
-                <MapView detail={coordinates} />
             </View>
+            <MapView detail={coordinates} />
         </View>
     );
 }
@@ -27,8 +33,10 @@ function CardImage({ src }) {
         <Box style={themeStyles.imageContainer}>
             <Image
                 objectFit='contain'
-                width="100%"
-                height="100%"
+                // center the image
+                justifyItems='center'
+                width="30rem"
+                height="50%"
                 maxHeight="90%"
                 borderRadius="md"
                 src={src}
@@ -53,7 +61,6 @@ function CardInfo({ label, detail }) {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         flexDirection: 'row',
         marginLeft: 20,
     },
@@ -64,8 +71,9 @@ const styles = StyleSheet.create({
     },
     infoContainer: {
         flex: 2,
-        justifyContent: 'center',
+        justifyContent: 'left',
         paddingHorizontal: 20,
+        maxWidth: 600,
     },
     cardInfoContainer: {
         flexDirection: 'row',

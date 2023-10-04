@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StyleSheet, View } from 'react-native';
@@ -7,13 +7,11 @@ import { ChakraBaseProvider} from "@chakra-ui/react";
 import Icon from '@mdi/react';
 import { mdiCalendar, mdiWrenchClock, mdiMoonWaningCrescent, mdiWhiteBalanceSunny, mdiCalendarEdit } from '@mdi/js';
 import { Grid } from '@chakra-ui/react';
-import calendarFirebase from "./compoments/CalendarFirebase";
 import CalendarFirebase from "./compoments/CalendarFirebase";
 import CardDetailScreen from "./compoments/CardDetailScreen";
-//dark mode
 import 'antd'
-import {DarkModeProvider} from "./contexts/DarkModeContext";
-import {useDarkMode} from './contexts/DarkModeContext';
+import {DarkModeProvider, useDarkMode} from "./contexts/DarkModeContext";
+import { LanguageContext, LanguageProvider } from "./contexts/LanguageContext";  // Updated the import statement
 import { Select } from 'antd';
 import EventManager from "./compoments/EventManager";
 const Stack = createStackNavigator();
@@ -40,13 +38,17 @@ function HomeScreen({ navigation }) {
 
 function App() {
     const { isDarkMode, toggleDarkMode, styles } = useDarkMode();
+    const { language, setLanguage } = useContext(LanguageContext);  // Added useContext to get the current language and function to set language
     const { Option } = Select;
+
     const iconOptions = [
-        { label: 'Icon1', value: 'icon1', icon: mdiMoonWaningCrescent },  // replace with actual icons
-        { label: 'Icon2', value: 'icon2', icon: mdiWhiteBalanceSunny },   // replace with actual icons
+        { label: '🇩🇪', value: 'de' }, // Updated value to 'de'
+        { label: '🇬🇧', value: 'en' }, // Updated value to 'en'
     ];
+
     const handleChange = (value) => {
         console.log(`selected ${value}`);
+        setLanguage(value);  // set the language based on the selected value
     };
 
     useEffect(() => {
@@ -85,22 +87,16 @@ function App() {
                                   path={isDarkMode ? mdiWhiteBalanceSunny : mdiMoonWaningCrescent}
                             />
                             <Select
-                                key={isDarkMode ? 'dark' : 'light'} // Added here
-                                defaultValue="icon1"
-                                style={{ width: 200, color: styles.selectItemColor }}
+                                value={language} // Set the value prop to the selected icon
+                                style={{ width: 100, color: styles.selectItemColor }}
                                 dropdownStyle={{ backgroundColor: isDarkMode ? '#282c34' : '#fff' }}
                                 onChange={handleChange}
                                 optionLabelProp="label"
                             >
                                 {iconOptions.map((option, index) => (
-                                    <Option key={index} value={option.value} label={(
+                                    <Option key={index} value={option.value} label={option.label}>
                                         <div style={{ display: 'flex', alignItems: 'center' }}>
-                                            <Icon path={option.icon} size={1} color={styles.selectItemColor} />
-                                            <span style={{ color: styles.selectItemColor, marginLeft: '8px' }}>{option.label}</span>
-                                        </div>
-                                    )}>
-                                        <div style={{ display: 'flex', alignItems: 'center' }}>
-                                            <Icon path={option.icon} size={1} color={styles.selectItemColor} />
+                                            <span style={{ fontSize: '18px' }}>{option.label}</span>
                                             <span style={{ color: styles.selectItemColor, marginLeft: '8px' }}>{option.label}</span>
                                         </div>
                                     </Option>
@@ -119,11 +115,18 @@ function App() {
     );
 }
 
+const styles = StyleSheet.create({
+
+});
+
+
 export default function AppWrapper() {
     return (
         <ChakraBaseProvider>
             <DarkModeProvider>
-                <App />
+                <LanguageProvider>
+                    <App />
+                </LanguageProvider>
             </DarkModeProvider>
         </ChakraBaseProvider>
     );
