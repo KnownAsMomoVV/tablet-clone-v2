@@ -42,8 +42,8 @@ function App() {
     const { Option } = Select;
 
     const iconOptions = [
-        { label: '🇩🇪', value: 'de' }, // Updated value to 'de'
-        { label: '🇬🇧', value: 'en' }, // Updated value to 'en'
+        { label: '🇩🇪', value: 'en' }, // Updated value to 'de'
+        { label: '🇬🇧', value: 'de' }, // Updated value to 'en'
     ];
 
     const handleChange = (value) => {
