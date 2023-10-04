@@ -38,12 +38,12 @@ jobs:
       - name: Build React app
         run: npx expo export:web
 
-      # Cache Cargo registry
-      - name: Cache Cargo registry
+      # Cache Cargo target directory
+      - name: Cache Cargo target directory
         uses: actions/cache@v2
         with:
-          path: ~/.cargo/registry
-          key: cargo-registry-${{ hashFiles('**/Cargo.lock') }}
+          path: src-tauri/target
+          key: cargo-target-${{ hashFiles('**/Cargo.lock') }}
 
       - name: Build Tauri app
         run: |
@@ -67,7 +67,6 @@ jobs:
           prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
-
 
       - name: Upload Release Asset
         uses: actions/upload-release-asset@v1

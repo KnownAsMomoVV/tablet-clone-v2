@@ -41,12 +41,12 @@ function Calendar(props) {
                 let processedData = [];
 
                 if (cardData) {
-                    if (language === '2') {  // English
-                        processedData = cardData.en ? cardData.en.filter(card => card !== null && card !== undefined) : [];
+                    if (language === 'en') {  // English
+                        processedData = cardData.en ? cardData.en.filter(card => card !== null) : [];
                     } else {  // German
-                        // Exclude the 'en' property and get the rest of the data
-                        const { en, ...germanData } = cardData;
-                        processedData = Object.values(germanData).filter(card => card !== null && card !== undefined);
+                        const germanCards = { ...cardData };  // Creating a copy of the fetched data
+                        delete germanCards.en;  // Removing the English events
+                        processedData = Object.values(germanCards).filter(card => card !== null);
                     }
                 }
 
