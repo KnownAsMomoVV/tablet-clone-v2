@@ -53,7 +53,7 @@ function App() {
 
     useEffect(() => {
         // Heartbeat URL
-        const url = "https://ping.checklyhq.com/f1ece931-1be8-44bf-b861-bb4e203a336d";
+        const url = "https://ping.checklyhq.com/b48b087d-ae50-4438-b9a7-3d0c30a21b77";
 
         const pingHeartbeat = () => {
             // A GET request to the Heartbeat
